@@ -3,6 +3,7 @@
 #ifndef LSP_SOCKET_UNSUPPORTED
 
 #include <cassert>
+#include <cerrno>
 
 #ifdef LSP_SOCKET_POSIX
 #include <netdb.h>
