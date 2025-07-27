@@ -6,6 +6,7 @@
 #include <cerrno>
 
 #ifdef LSP_SOCKET_POSIX
+#include <cerrno>
 #include <netdb.h>
 #include <unistd.h>
 #include <sys/types.h>
@@ -241,7 +242,6 @@ Socket Socket::connect(const std::string& address, unsigned short port)
 {
 	return Socket(Impl::connect(address, port));
 }
-
 
 bool Socket::isOpen() const
 {
