@@ -3,10 +3,14 @@ cmake_minimum_required(VERSION 3.12)
 project(lsp)
 
 # compiler flags
-
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED YES)
 set(CMAKE_CXX_EXTENSIONS NO)
+
+# options
+set(CUSTOM_METAMODEL_JSON
+    ""
+    CACHE STRING "Path to custom meta model json file for implementing custom types using lspgen")
 
 if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 	add_compile_options(/W4 /bigobj)
@@ -100,9 +104,17 @@ set(LSP_GENERATED_SOURCES
 )
 
 set(LSP_METAMODEL_JSON ${CMAKE_CURRENT_SOURCE_DIR}/lspgen/metaModel.json)
+if (CUSTOM_METAMODEL_JSON STREQUAL "")
+  set (LSPGEN_FILES
+	 ${LSP_METAMODEL_JSON})
+else()
+  set (LSPGEN_FILES
+	 ${LSP_METAMODEL_JSON}
+	 ${CUSTOM_METAMODEL_JSON})
+endif()
 
 add_custom_command(
-	COMMAND lspgen ${LSP_METAMODEL_JSON}
+	COMMAND lspgen ${LSPGEN_FILES}
 	WORKING_DIRECTORY ${LSP_GENERATED_FILES_DIR}/lsp
 	OUTPUT ${LSP_GENERATED_HEADERS} ${LSP_GENERATED_SOURCES}
 	DEPENDS lspgen ${LSP_METAMODEL_JSON}
