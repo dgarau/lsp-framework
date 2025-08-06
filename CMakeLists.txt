@@ -117,7 +117,7 @@ add_custom_command(
 	COMMAND lspgen ${LSPGEN_FILES}
 	WORKING_DIRECTORY ${LSP_GENERATED_FILES_DIR}/lsp
 	OUTPUT ${LSP_GENERATED_HEADERS} ${LSP_GENERATED_SOURCES}
-	DEPENDS lspgen ${LSP_METAMODEL_JSON}
+	DEPENDS lspgen ${LSPGEN_FILES}
 	COMMENT "Generating lsp types from meta model..."
 )
 
