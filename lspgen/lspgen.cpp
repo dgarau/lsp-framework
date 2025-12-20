@@ -910,7 +910,7 @@ R"(#pragma once
 
 namespace lsp{
 
-inline constexpr std::string_view VersionStr{"${LSP_VERSION}"};
+inline constexpr std::string_view ProtocolVersionStr{"${LSP_VERSION}"};
 
 using Null      = std::nullptr_t;
 using uint      = unsigned int;
