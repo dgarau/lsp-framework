@@ -5,7 +5,7 @@ namespace lsp{
 namespace{
 
 thread_local const MessageId* t_currentRequestId  = nullptr;
-constexpr          MessageId  NullMessageId       = json::Null(); // Used for notifications which don't have an id
+const              MessageId  NullMessageId       = json::Null(); // Used for notifications which don't have an id
 
 json::Integer nextUniqueRequestId()
 {
