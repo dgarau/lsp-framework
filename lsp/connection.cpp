@@ -246,7 +246,7 @@ void Connection::parseHeaderValue(MessageHeader& header, std::string_view line)
 			const auto* last     = first + value.size();
 			const auto [ptr, ec] = std::from_chars(first, last, header.contentLength);
 
-			if(ec != std::err{} || ptr != last)
+			if(ec != std::errc{} || ptr != last)
 				throw ConnectionError("Protocol: Invalid value for Content-Length header field");
 		}
 		else if(equalCaseInsensitive(key, "Content-Type"))
